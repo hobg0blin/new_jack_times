@@ -8,7 +8,7 @@ chrome.storage.local.get([window.location.href], (result) => {
 airHorn.src = chrome.runtime.getURL('air-horn-club-sample_1.mp3');
 //TODO: make site-specific and eventually shareable, highlight the airhorned text
 //for testing purposes, clear cache on pageload
-// chrome.storage.local.clear();
+chrome.storage.local.clear();
 function gText(e) {
     t = (document.all) ? document.selection.createRange().text : document.getSelection();
     chrome.storage.local.get([window.location.href], (result) => {
@@ -33,6 +33,17 @@ window.onscroll = function(e) {
     }
   })
 }
+var mouseIsDown = false;
+document.onmousedown = () => {
+  mouseIsDown = true;
+  setTimeout(() => {
+    if (mouseIsDown) {
+      gText();
+    }
+  }, 750)
+};
+document.onmouseup = () => {
+  mouseIsDown = false;
+};
 
-document.onmouseup = gText;
 if (!document.all) document.captureEvents(Event.MOUSEUP);
