@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "New Jack Times",
+  "description": "This extension adds trap sound effects to articles you've read.",
+  "version": "1.0",
+
+  "browser_action": {
+    // "default_icon": "icon.png",
+    // "default_popup": "popup.html",
+    "default_title": "New Jack Times"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["listener.js"]
+    }
+  ],
+  "permissions": [
+    "<all_urls>", 
+   "file:///*/*", 
+   "file://*/*" ,
+    "activeTab",
+    "https://ajax.googleapis.com/",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "air-horn-club-sample_1.mp3"
+  ]
+}
